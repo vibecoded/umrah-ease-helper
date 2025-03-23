@@ -5,7 +5,7 @@ export const UMRAH_RITUALS: RitualStep[] = [
   {
     id: 1,
     title: 'Entering Ihram',
-    description: 'Before reaching the Miqat (boundary), perform ghusl (ritual bath), wear ihram garments (two white unsewn cloths for men; normal clothes for women), and make the intention for Umrah. Then recite the Talbiyah: "Labbayk Allahumma labbayk. Labbayk la shareeka laka labbayk. Innal hamda wan-ni'mata laka wal-mulk. La shareeka lak."',
+    description: 'Before reaching the Miqat (boundary), perform ghusl (ritual bath), wear ihram garments (two white unsewn cloths for men; normal clothes for women), and make the intention for Umrah. Then recite the Talbiyah: "Labbayk Allahumma labbayk. Labbayk la shareeka laka labbayk. Innal hamda wan-ni\'mata laka wal-mulk. La shareeka lak."',
     prayers: ['Talbiyah', 'Intention for Umrah'],
     important: true,
     location: 'miqat'
