@@ -1,12 +1,12 @@
 
 import { Place } from '@/types';
 
-export const HOLY_PLACES: Place[] = [
+export const HOLY_SITES: Place[] = [
   {
     id: 'kaaba',
     name: 'The Kaaba',
     arabicName: 'الكعبة',
-    description: 'The sacred House of Allah, the most holy site in Islam.',
+    description: 'The most sacred site in Islam, located in the center of Masjid al-Haram',
     latitude: 21.4225,
     longitude: 39.8262,
     category: 'mosque',
@@ -16,7 +16,7 @@ export const HOLY_PLACES: Place[] = [
     id: 'masjid-al-haram',
     name: 'Masjid al-Haram',
     arabicName: 'المسجد الحرام',
-    description: 'The Great Mosque of Mecca, surrounding the Kaaba.',
+    description: 'The largest mosque in the world and surrounds the Kaaba',
     latitude: 21.4225,
     longitude: 39.8262,
     category: 'mosque',
@@ -26,8 +26,8 @@ export const HOLY_PLACES: Place[] = [
     id: 'safa-marwa',
     name: 'Safa and Marwa',
     arabicName: 'الصفا والمروة',
-    description: 'Hills between which Muslims travel back and forth during Umrah.',
-    latitude: 21.4231,
+    description: 'The two small hills between which Muslims travel back and forth seven times during Umrah',
+    latitude: 21.4233,
     longitude: 39.8267,
     category: 'landmark',
     city: 'makkah'
@@ -36,9 +36,9 @@ export const HOLY_PLACES: Place[] = [
     id: 'mina',
     name: 'Mina',
     arabicName: 'منى',
-    description: 'Valley and tent city near Mecca where pilgrims stay during Hajj.',
+    description: 'A neighborhood of Mecca where pilgrims stay during Hajj',
     latitude: 21.4133,
-    longitude: 39.8895,
+    longitude: 39.8933,
     category: 'landmark',
     city: 'makkah'
   },
@@ -46,9 +46,9 @@ export const HOLY_PLACES: Place[] = [
     id: 'arafat',
     name: 'Mount Arafat',
     arabicName: 'جبل عرفات',
-    description: 'Mountain where Prophet Muhammad delivered his last sermon.',
-    latitude: 21.3548,
-    longitude: 39.9841,
+    description: 'A granite hill east of Mecca where Muslims gather during Hajj',
+    latitude: 21.3550,
+    longitude: 39.9842,
     category: 'landmark',
     city: 'makkah'
   },
@@ -56,29 +56,29 @@ export const HOLY_PLACES: Place[] = [
     id: 'muzdalifah',
     name: 'Muzdalifah',
     arabicName: 'مزدلفة',
-    description: 'Open area between Mina and Arafat where pilgrims spend a night during Hajj.',
-    latitude: 21.3764,
-    longitude: 39.9375,
+    description: 'An open area near Mecca where pilgrims stay overnight during Hajj',
+    latitude: 21.3833,
+    longitude: 39.9408,
     category: 'landmark',
     city: 'makkah'
   },
   {
-    id: 'jamarat',
-    name: 'Jamarat',
-    arabicName: 'الجمرات',
-    description: 'Pillars representing the devil, where pilgrims throw stones during Hajj.',
-    latitude: 21.4225,
-    longitude: 39.8721,
+    id: 'jabal-al-nour',
+    name: 'Jabal al-Nour',
+    arabicName: 'جبل النور',
+    description: 'Mountain near Mecca where the first verses of the Quran were revealed to Muhammad',
+    latitude: 21.4583,
+    longitude: 39.8625,
     category: 'landmark',
     city: 'makkah'
   },
   {
-    id: 'prophets-mosque',
-    name: "Prophet's Mosque",
+    id: 'masjid-al-nabawi',
+    name: 'Masjid al-Nabawi',
     arabicName: 'المسجد النبوي',
-    description: 'The second most holy site in Islam, built by Prophet Muhammad.',
+    description: 'The second holiest site in Islam, the mosque was built by Prophet Muhammad',
     latitude: 24.4672,
-    longitude: 39.6111,
+    longitude: 39.6112,
     category: 'mosque',
     city: 'madinah'
   },
@@ -86,9 +86,9 @@ export const HOLY_PLACES: Place[] = [
     id: 'quba-mosque',
     name: 'Quba Mosque',
     arabicName: 'مسجد قباء',
-    description: 'The first mosque in Islamic history, built upon the Prophet's arrival in Medina.',
-    latitude: 24.4406,
-    longitude: 39.6168,
+    description: 'The oldest mosque in the world, its first stones were positioned by Prophet Muhammad',
+    latitude: 24.4399,
+    longitude: 39.6157,
     category: 'mosque',
     city: 'madinah'
   },
@@ -96,46 +96,47 @@ export const HOLY_PLACES: Place[] = [
     id: 'jannat-al-baqi',
     name: 'Jannat al-Baqi',
     arabicName: 'جنة البقيع',
-    description: 'The main cemetery of Medina where many of the Prophet's companions are buried.',
-    latitude: 24.4664,
-    longitude: 39.6137,
+    description: 'The main cemetery of Madinah where many of the companions of the Prophet are buried',
+    latitude: 24.4677,
+    longitude: 39.6128,
     category: 'landmark',
     city: 'madinah'
   }
 ];
 
-export function getPlacesByCity(city: 'makkah' | 'madinah' | 'jeddah'): Place[] {
-  return HOLY_PLACES.filter(place => place.city === city);
-}
-
 export function getPlaceById(id: string): Place | undefined {
-  return HOLY_PLACES.find(place => place.id === id);
+  return HOLY_SITES.find(place => place.id === id);
 }
 
-export function getPlacesByCategory(category: string): Place[] {
-  return HOLY_PLACES.filter(place => place.category === category);
+export function getPlacesByCity(city: 'makkah' | 'madinah' | 'jeddah'): Place[] {
+  return HOLY_SITES.filter(place => place.city === city);
 }
 
-export function calculateDistance(
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-): number {
-  const R = 6371; // Radius of the earth in km
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-      Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c; // Distance in km
-  return d;
+export function getPlacesByCategory(category: 'mosque' | 'landmark' | 'service' | 'other'): Place[] {
+  return HOLY_SITES.filter(place => place.category === category);
 }
 
-function deg2rad(deg: number): number {
-  return deg * (Math.PI / 180);
+export function getNearbyPlaces(latitude: number, longitude: number, radiusKm: number): Place[] {
+  return HOLY_SITES.filter(place => {
+    const distance = calculateDistance(latitude, longitude, place.latitude, place.longitude);
+    return distance <= radiusKm;
+  });
+}
+
+// Function to calculate distance between two coordinates using the Haversine formula
+export function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371; // Radius of the Earth in km
+  const dLat = degreesToRadians(lat2 - lat1);
+  const dLon = degreesToRadians(lon2 - lon1);
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  const distance = R * c; // Distance in km
+  return distance;
+}
+
+function degreesToRadians(degrees: number): number {
+  return degrees * (Math.PI/180);
 }

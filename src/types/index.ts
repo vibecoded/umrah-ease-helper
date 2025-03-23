@@ -147,3 +147,40 @@ export interface Phrase {
   pronunciation: string;
   context?: string;
 }
+
+export interface UserPreferences {
+  theme: 'light' | 'dark' | 'system';
+  language: 'en' | 'ar';
+  prayerNotifications: boolean;
+  flightNotifications: boolean;
+  defaultCurrency: string;
+  defaultCity: 'makkah' | 'madinah' | 'jeddah';
+}
+
+export interface Bookmark {
+  id: string;
+  type: 'hotel' | 'flight' | 'package';
+  referenceId: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  notes?: string;
+}
+
+export interface TransportOption {
+  id: string;
+  type: 'bus' | 'train' | 'taxi' | 'car';
+  from: string;
+  to: string;
+  duration: string;
+  price: number;
+  currency: string;
+  schedule: string[];
+  bookingUrl?: string;
+}
+
+// Re-export all types from separate type files
+export * from './hotels';
+export * from './flights';
+export * from './packages';
+export * from './weather';
