@@ -3,9 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
 
-// Ensure archiver package is installed
-// npm install archiver --save-dev
-
 // Create dist directory if it doesn't exist
 const distPath = path.resolve(__dirname, '../dist');
 if (!fs.existsSync(distPath)) {
