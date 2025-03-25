@@ -14,7 +14,9 @@ const setupPrayerAlarms = async () => {
         const now = new Date();
         
         if (prayerTime > now) {
-          const minutes = Math.floor((prayerTime - now) / 60000);
+          // Calculate minutes difference as a number
+          const diffMs = prayerTime.getTime() - now.getTime();
+          const minutes = Math.floor(diffMs / (1000 * 60));
           
           if (minutes <= 15) {
             // Only set alarms for prayers within the next 15 minutes

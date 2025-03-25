@@ -21,6 +21,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+    sourcemap: mode === 'development',
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
@@ -33,4 +36,8 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
+  define: {
+    // Ensure browser and chrome globals are recognized
+    'process.env.VITE_BROWSER_MODE': JSON.stringify(mode),
+  }
 }));

@@ -1,4 +1,3 @@
-
 // Storage service to interact with Firefox's browser.storage API
 
 export type StorageArea = 'local' | 'sync';
@@ -8,9 +7,9 @@ class StorageService {
   
   constructor() {
     // Initialize with Firefox storage or fallback to localStorage for development
-    if (typeof browser !== 'undefined' && browser.storage) {
+    if (typeof browser !== 'undefined' && browser?.storage) {
       this.storage = browser.storage;
-    } else if (typeof chrome !== 'undefined' && chrome.storage) {
+    } else if (typeof chrome !== 'undefined' && chrome?.storage) {
       this.storage = this.createChromeStorageWrapper();
     } else {
       // Fallback for development in non-extension environment
@@ -23,7 +22,7 @@ class StorageService {
   private createChromeStorageWrapper() {
     return {
       local: {
-        get: (keys: string | string[] | null) => {
+        get: (keys: string | string[] | null | undefined) => {
           return new Promise((resolve) => {
             chrome.storage.local.get(keys, (items) => {
               resolve(items);
@@ -53,7 +52,7 @@ class StorageService {
         }
       },
       sync: {
-        get: (keys: string | string[] | null) => {
+        get: (keys: string | string[] | null | undefined) => {
           return new Promise((resolve) => {
             chrome.storage.sync.get(keys, (items) => {
               resolve(items);
@@ -88,10 +87,10 @@ class StorageService {
   private createLocalStorageFallback() {
     return {
       local: {
-        get: async (keys: string | string[] | null) => {
+        get: async (keys: string | string[] | null | undefined) => {
           const result: Record<string, any> = {};
           
-          if (keys === null) {
+          if (keys === null || keys === undefined) {
             // Get all items
             for (let i = 0; i < localStorage.length; i++) {
               const key = localStorage.key(i);
@@ -142,21 +141,16 @@ class StorageService {
         }
       },
       sync: {
-        // Sync storage fallback (same as local in this fallback)
-        get: async (keys: string | string[] | null) => {
-          // Forward to local storage
+        get: async (keys: string | string[] | null | undefined) => {
           return this.storage.local.get(keys);
         },
         set: async (items: Record<string, any>) => {
-          // Forward to local storage
           return this.storage.local.set(items);
         },
         remove: async (keys: string | string[]) => {
-          // Forward to local storage
           return this.storage.local.remove(keys);
         },
         clear: async () => {
-          // Forward to local storage
           return this.storage.local.clear();
         }
       }
