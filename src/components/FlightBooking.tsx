@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,7 +10,6 @@ import { FLIGHTS, TRANSPORT_OPTIONS } from '@/lib/mockData';
 import { Flight, TransportOption } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import { Plane, Calendar, ArrowRight, Clock, BookmarkIcon, TrendingDown, MapPin, Bus, Train, Car, AlertTriangle } from 'lucide-react';
-import { format } from 'date-fns';
 import { useToast } from '@/components/ui/use-toast';
 import bookmarkService from '@/services/bookmarkService';
 

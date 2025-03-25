@@ -11,12 +11,78 @@ class StorageService {
     if (typeof browser !== 'undefined' && browser.storage) {
       this.storage = browser.storage;
     } else if (typeof chrome !== 'undefined' && chrome.storage) {
-      this.storage = chrome.storage;
+      this.storage = this.createChromeStorageWrapper();
     } else {
       // Fallback for development in non-extension environment
       console.warn('Browser extension storage API not available, using localStorage fallback');
       this.storage = this.createLocalStorageFallback();
     }
+  }
+  
+  // Create a Promise-based wrapper for Chrome's callback-based API
+  private createChromeStorageWrapper() {
+    return {
+      local: {
+        get: (keys: string | string[] | null) => {
+          return new Promise((resolve) => {
+            chrome.storage.local.get(keys, (items) => {
+              resolve(items);
+            });
+          });
+        },
+        set: (items: Record<string, any>) => {
+          return new Promise<void>((resolve) => {
+            chrome.storage.local.set(items, () => {
+              resolve();
+            });
+          });
+        },
+        remove: (keys: string | string[]) => {
+          return new Promise<void>((resolve) => {
+            chrome.storage.local.remove(keys, () => {
+              resolve();
+            });
+          });
+        },
+        clear: () => {
+          return new Promise<void>((resolve) => {
+            chrome.storage.local.clear(() => {
+              resolve();
+            });
+          });
+        }
+      },
+      sync: {
+        get: (keys: string | string[] | null) => {
+          return new Promise((resolve) => {
+            chrome.storage.sync.get(keys, (items) => {
+              resolve(items);
+            });
+          });
+        },
+        set: (items: Record<string, any>) => {
+          return new Promise<void>((resolve) => {
+            chrome.storage.sync.set(items, () => {
+              resolve();
+            });
+          });
+        },
+        remove: (keys: string | string[]) => {
+          return new Promise<void>((resolve) => {
+            chrome.storage.sync.remove(keys, () => {
+              resolve();
+            });
+          });
+        },
+        clear: () => {
+          return new Promise<void>((resolve) => {
+            chrome.storage.sync.clear(() => {
+              resolve();
+            });
+          });
+        }
+      }
+    };
   }
   
   private createLocalStorageFallback() {

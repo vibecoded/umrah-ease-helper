@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -17,6 +18,19 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        background: path.resolve(__dirname, "src/background.ts"),
+      },
+      output: {
+        entryFileNames: (chunk) => {
+          return chunk.name === 'background' ? 'background.js' : 'assets/[name]-[hash].js';
+        },
+      },
     },
   },
 }));
