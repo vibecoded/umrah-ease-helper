@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { FLIGHTS, TRANSPORT_OPTIONS } from '@/lib/mockData';
 import { Flight, TransportOption } from '@/types';
 import { Badge } from '@/components/ui/badge';
-import { Airplane, Calendar, ArrowRight, Clock, BookmarkPlus, TrendingDown, MapPin, Bus, Train, Car, Taxi, AlertTriangle } from 'lucide-react';
+import { Plane, Calendar, ArrowRight, Clock, BookmarkIcon, TrendingDown, MapPin, Bus, Train, Car, AlertTriangle } from 'lucide-react';
 import { format } from 'date-fns';
 import { useToast } from '@/components/ui/use-toast';
 import bookmarkService from '@/services/bookmarkService';
@@ -35,7 +34,6 @@ export const FlightBooking = () => {
       return;
     }
     
-    // Simple filter based on cities (mock functionality)
     const results = FLIGHTS.filter(flight => {
       return flight.departureCity.toLowerCase().includes(departureCity.toLowerCase()) &&
              flight.arrivalCity.toLowerCase().includes(arrivalCity.toLowerCase());
@@ -82,7 +80,7 @@ export const FlightBooking = () => {
         <div className="flex justify-between items-start">
           <div>
             <div className="flex items-center">
-              <Airplane className="h-5 w-5 mr-2 text-primary" />
+              <Plane className="h-5 w-5 mr-2 text-primary" />
               <h3 className="font-semibold">{flight.airline}</h3>
               <Badge variant="outline" className="ml-2">{flight.flightNumber}</Badge>
             </div>
@@ -153,7 +151,7 @@ export const FlightBooking = () => {
             onClick={() => addToBookmarks(flight)}
             className="rounded-full"
           >
-            <BookmarkPlus className="h-4 w-4" />
+            <BookmarkIcon className="h-4 w-4" />
           </Button>
         </div>
       </Card>
@@ -164,7 +162,7 @@ export const FlightBooking = () => {
     switch (type) {
       case 'bus': return <Bus className="h-4 w-4" />;
       case 'train': return <Train className="h-4 w-4" />;
-      case 'taxi': return <Taxi className="h-4 w-4" />;
+      case 'taxi': return <Car className="h-4 w-4" />;
       case 'car': return <Car className="h-4 w-4" />;
       default: return null;
     }
