@@ -39,5 +39,8 @@ export default defineConfig(({ mode }) => ({
   define: {
     // Ensure browser and chrome globals are recognized
     'process.env.VITE_BROWSER_MODE': JSON.stringify(mode),
+    // Make global.browser available in the build
+    'global.browser': 'typeof browser !== "undefined" ? browser : undefined',
+    'global.chrome': 'typeof chrome !== "undefined" ? chrome : undefined',
   }
 }));

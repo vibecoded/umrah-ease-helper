@@ -15,8 +15,8 @@ try {
   // Run the packaging script
   require('./package-extension.js');
   
-  console.log('\nExtension is ready in the dist/umrah-assistant.zip file');
-  console.log('You can upload this file to the Firefox Add-ons Developer Hub');
+  console.log('\nExtension is ready in the dist/firefox-extension directory');
+  console.log('You can upload the zip file from dist/umrah-assistant.zip to the Firefox Add-ons Developer Hub');
 } catch (error) {
   console.error('Build failed:', error);
   process.exit(1);

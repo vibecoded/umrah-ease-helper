@@ -1,69 +1,57 @@
-# Welcome to your Lovable project
 
-## Project info
+# Umrah Assistant Firefox Extension
 
-**URL**: https://lovable.dev/projects/a73ab6d6-00ef-4c4d-ab35-9a2e67e5c544
+A comprehensive tool to simplify planning and performing Umrah.
 
-## How can I edit this code?
+## Project Structure
 
-There are several ways of editing your application.
+- `dist/firefox-extension/` - The built extension ready for submission to Firefox Add-ons
+- `src/` - Source code
+  - `background.ts` - Background script for the extension
+  - `components/` - React components
+  - `context/` - React context providers
+  - `lib/` - Utility functions and constants
+  - `services/` - Service modules
+  - `types/` - TypeScript type definitions
+- `public/` - Static files
+  - `icons/` - Extension icons
 
-**Use Lovable**
+## Development
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a73ab6d6-00ef-4c4d-ab35-9a2e67e5c544) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Install dependencies:
+```
+npm install
 ```
 
-**Edit a file directly in GitHub**
+2. Build the extension:
+```
+node scripts/build-extension.js
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. The built extension will be in `dist/firefox-extension/` and a zip file will be created at `dist/umrah-assistant.zip`
 
-**Use GitHub Codespaces**
+4. For development, you can use web-ext:
+```
+npm install -g web-ext
+web-ext run --source-dir ./dist/firefox-extension
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Firefox Add-on Submission
 
-## What technologies are used for this project?
+To submit the extension to Firefox Add-ons:
 
-This project is built with .
+1. Build the extension using the command above
+2. Upload the generated `dist/umrah-assistant.zip` file to [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Features
 
-## How can I deploy this project?
+- Prayer time notifications
+- Umrah ritual guidance
+- Multi-language support
+- Weather information
+- Hotel and flight booking assistance
+- And more!
 
-Simply open [Lovable](https://lovable.dev/projects/a73ab6d6-00ef-4c4d-ab35-9a2e67e5c544) and click on Share -> Publish.
+## License
 
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project is proprietary and confidential.
